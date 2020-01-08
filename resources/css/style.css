@@ -1,0 +1,259 @@
+body {
+    height: 200vh;
+    overflow-x: hidden;
+    background: rgba(0, 0, 0, 0.05);
+
+    font-family: 'Open Sans', sans-serif;
+}
+
+.navbar-default {
+    background-color: ghostwhite;
+    overflow: hidden;
+    -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+}
+
+/* change the brand and text color */
+.navbar-default .navbar-brand,
+.navbar-default .navbar-text {
+    color: black;
+}
+
+.navbar {
+    padding: .2rem;
+}
+
+.active > a {
+    -webkit-text-fill-color: dodgerblue;
+}
+
+.navbar-nav li {
+    padding-right: 20px;
+}
+
+.nav-link {
+    font-size: 1.0em;
+    font-weight: normal;
+}
+
+.logo-image {
+    max-width: 60px;
+    margin-right: 10px;
+}
+
+.logo-name {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: dodgerblue;
+}
+
+/* Social media css */
+
+.social-sharing {
+    z-index: 1000;
+    display: block;
+    position: fixed;
+    width: 5%;
+    left: 0;
+    top: 35%;
+}
+
+.social-sharing ul.menu-social {
+    list-style: none;
+    text-align: center;
+    float: left;
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrapwrap;
+    flex-wrap: nowrap;
+}
+
+.social-sharing ul.menu-social a.social-item {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    height: 50px;
+    width: 50px;
+    transition: 0.25s ease-in;
+}
+
+.social-sharing ul.menu-social a.social-item i {
+    font-size: 22px;
+    color: dodgerblue;
+}
+
+.social-sharing ul.menu-social a.social-item:hover {
+    transform: translateX(14px);
+}
+
+/**/
+
+/* Image slider style */
+.carousel-inner {
+    max-height: 100%;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carousel-caption h1 {
+    font-size: 300%;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+.carousel-caption h2 {
+    font-size: 400%;
+    font-weight: bold;
+    color: whitesmoke;
+    text-transform: lowercase;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+.carousel-caption h3 {
+    font-size: 200%;
+    font-weight: bold;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+    padding-bottom: 1rem;
+}
+
+/** media queries **/
+@media screen and (max-width: 992px) {
+    .carousel-caption {
+        position: absolute;
+        top: 47%;
+        transform: translateY(-50%);
+    }
+
+    .carousel-caption h1 {
+        font-size: 300%;
+    }
+
+    .carousel-caption h2 {
+        font-size: 350%;
+        font-weight: bold;
+    }
+
+    .carousel-caption h3 {
+        font-size: 150%;
+        font-weight: 500;
+        padding-bottom: .5rem;
+    }
+
+    .carousel-caption .btn {
+        font-size: 95%;
+        padding: 8px 14px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .carousel-caption {
+        top: 40%;
+    }
+
+    .carousel-caption h1 {
+        font-size: 300%;
+        font-weight: 700;
+    }
+
+    .carousel-caption h2 {
+        font-size: 200%;
+        font-weight: 700;
+    }
+
+    .carousel-caption h3 {
+        font-size: 150%;
+        font-weight: 500;
+        padding-bottom: .4rem;
+    }
+
+    .carousel-caption .btn {
+        font-size: 85%;
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-caption {
+        top: 38%;
+    }
+
+    .carousel-caption h1 {
+        font-size: 190%;
+        font-weight: 700;
+    }
+
+    .carousel-caption h2 {
+        font-size: 150%;
+        font-weight: 700;
+    }
+
+    .carousel-caption h3 {
+        font-size: 120%;
+        font-weight: 500;
+        padding-bottom: .3rem;
+    }
+
+    .carousel-caption .btn {
+        font-size: 75%;
+        padding: 6px 12px;
+    }
+
+    .carousel-indicators {
+        display: none;
+    }
+}
+
+/**/
+
+
+.card {
+    cursor: pointer;
+    transition: 0.5s ease;
+    height: 100%;
+}
+
+.card:hover {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.secondary-container {
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding-bottom: 1rem;
+}
+
+.footer {
+    background: #343a40;
+    color: white;
+}
+
+.footer a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer h6 {
+    font-weight: 600;
+}
+
+.footer .footer-copyright {
+    background: #25292f;
+}
