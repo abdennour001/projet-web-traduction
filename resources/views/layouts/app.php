@@ -151,13 +151,13 @@
             <div class="col-4 text-center">
                 <div class="row secondary-container">
                     <div class="col">
-                        <?php include_once view('actualite.php')?>
+                        <?php echo $this->_data['actualite-content']; /*include_once view('actualite.php')*/ ?>
                     </div>
                 </div>
             </div>
             <!-- right section -->
             <div class="col-8">
-                <?php include_once view("main-section.php"); ?>
+                <?php echo $this->_data['main-section-content'] /*include_once view("main-section.php");*/ ?>
             </div>
         </div>
     </div>

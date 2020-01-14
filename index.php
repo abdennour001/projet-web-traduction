@@ -1,7 +1,9 @@
 <?php
 
-	include __DIR__.'/config/autoload.php';
+include __DIR__.'/config/autoload.php';
+include 'config/View.php';
 
-	$app = require_once __DIR__."/resources/views/layouts/app.php";
-	
-?>
+
+/* Call the routes dispatcher */
+$dispatcher = require_once env('ROOT_PATH').'routes/dispatcher.php';
+/* Listen to routes traffic here ... */

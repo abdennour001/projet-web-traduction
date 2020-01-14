@@ -57,7 +57,13 @@
             <label class="custom-file-label" for="fichier">Choisir fichier</label>
         </div>
     </div>
-
+    <div class="form-group">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="checkTraducteur">
+            <label class="custom-control-label" for="checkTraducteur">Voulez vous un traducteur assermenté ?</label>
+        </div>
+    </div>
+    <div style="height: 32px"></div>
     <div class="form-group">
         <div class="g-recaptcha" data-sitekey="6LcmZs0UAAAAAJX5M6N-sYp_F49FCXeDjkQ10VVO" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
         <input class="form-control d-none" data-recaptcha="true" required data-error="Please complete the Captcha">

@@ -9,7 +9,7 @@
 		function env($key, $default = null) {
 				$value = getenv($key);
 				if ($value === false) {
-						return $default;
+					return $default;
 				}
 				return $value;
 		}
@@ -27,4 +27,9 @@
         }
     }
 
-?>
+	if(!function_exists('url')) {
+		function url($route) {
+			$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/projet";
+			return $actual_link.$route;
+		}
+	}
