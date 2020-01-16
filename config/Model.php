@@ -1,9 +1,13 @@
 <?php
 
 require_once 'database/ConnexionDB.php';
-
+require_once 'HasRelationShips.php';
+require_once 'InheritanceRelationShips.php';
 
 abstract class Model {
+
+    use HasRelationShips;
+    use InheritanceRelationShips;
 
     /**
      * The table associated with the model.
@@ -153,11 +157,13 @@ abstract class Model {
         return $resultArray;
     }
 
+
     /**
      *
      * Save this instance to the database.
      *
-     * @return mixed
+     *
+     * @return bool
      */
     public function save() {
         try {
@@ -184,28 +190,91 @@ abstract class Model {
 
             ConnexionDB::close_connexion();
         } catch (PDOException $e) {
-            echo "Can't insert data : " . $e->getMessage();
+            die("Can't insert data : " . $e->getMessage());
         }
+        return true;
     }
 
     /**
      *
      * Delete this instance from the database.
      *
-     * @return mixed
+     * @return bool
      */
     public function delete() {
+        try {
+            $conn = ConnexionDB::get_connexion();
 
+            $sql = "DELETE FROM ". $this->table ." WHERE " .
+                $this->primaryKey . " = " . $this->{$this->primaryKey};
+
+            $conn->exec($sql);
+
+            ConnexionDB::close_connexion();
+        } catch (PDOException $e) {
+
+        }
+        return true;
     }
 
     /**
      *
      * Update this instance to the database.
      *
-     * @return mixed
+     * @return bool
      */
     public function update() {
+        try {
+            $conn = ConnexionDB::get_connexion();
 
+            $sql = "UPDATE ". $this->table ." SET ";
+            foreach ($this->fillable as $col) {
+                $sql .= $col . " = '" . $this->{$col} . "', ";
+            }
+            $timestamp = date('Y-m-d H:i:s');
+            $sql .= self::UPDATED_AT . " = '" . $timestamp . "'";
+            $sql .= " WHERE " . $this->primaryKey . " = " . $this->{$this->primaryKey};
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            ConnexionDB::close_connexion();
+        } catch (PDOException $e) {
+            die("Can't update data : " . $e->getMessage());
+        }
+        return true;
+    }
+
+    /**
+     * Associate the model $model to this model.
+     *
+     * @param $model
+     */
+    public function associate($model) {
+        $model->{$this->primaryKey} = $this->{$this->primaryKey};
+        if (isset($this->{$model->primaryKey})) {
+            $this->{$model->primaryKey} = $model->{$model->primaryKey};
+        }
+    }
+
+    /**
+     * @param $model
+     */
+    public function attach($model) {
+        $class = get_class($this) . get_class($model);
+        require_once 'sideline/' . $class . '.php';
+        $hidden = new $class;
+        $hidden->{$this->primaryKey} = $this->{$this->primaryKey};
+        $hidden->{$model->primaryKey} = $model->{$model->primaryKey};
+        $res = $class::where([
+            $this->primaryKey => $this->{$this->primaryKey},
+            'AND',
+            $model->primaryKey => $model->{$model->primaryKey}
+        ]);
+        if ( $res == null) {
+            $hidden->save();
+        } else {
+            echo "Can't attach, relation already exist.";
+        }
     }
 
     /**

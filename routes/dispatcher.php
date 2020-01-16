@@ -2,33 +2,33 @@
 
 require_once 'Request.php';
 require_once 'Router.php';
-require_once 'app/Controllers/MainController.php';
+require_once 'app/Controllers/HomeController.php';
+require_once 'app/Controllers/LoginController.php';
+require_once 'app/Middleware/Register.php';
 
 
 $router = new Router(new Request);
 
-$router->get('/test', function () {
-    MainController::index();
-});
-
 $router->get("/", function() {
-    $p = new View(env('ROOT_PATH').'resources/views/forms/send-devis.php');
-    $p->set('data', 'this is data');
-    $p->render();
+    HomeController::index();
 });
 
-$router->get("/signin", function() {
-    $p = new View(env('ROOT_PATH').'resources/views/forms/signin.php');
-    $p->set('data', 'this is data');
-    $p->render();
+$router->get("/login", function() {
+    LoginController::index();
 });
 
-$router->get("/signup", function() {
-    $p = new View(env('ROOT_PATH').'resources/views/forms/signup.php');
-    $p->set('data', 'this is data');
-    $p->render();
+$router->post("/login/auth", function($request) {
+    LoginController::login($request);
 });
 
+$router->get("/logout", function() {
+    LoginController::logout();
+});
 
+$router->get("/sign-up", function () {
+    Register::index();
+});
 
-
+$router->post("/signup/signing", function ($request) {
+    Register::sign_up($request);
+});

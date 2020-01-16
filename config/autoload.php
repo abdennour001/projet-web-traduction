@@ -1,5 +1,6 @@
 <?php
 
+require_once "config/Session.php";
 
 	if(file_exists(__DIR__.'/env.php')) {
 		include __DIR__.'/env.php';
@@ -23,7 +24,7 @@
 
 	if(!function_exists('view')) {
 	    function view($viewRelativePath) {
-	        return 'resources/views/'.$viewRelativePath;
+	        return env('ROOT_PATH') . 'resources/views/'.$viewRelativePath;
         }
     }
 
@@ -33,3 +34,16 @@
 			return $actual_link.$route;
 		}
 	}
+
+	if (! function_exists('redirect')) {
+	    function redirect($to = null, $status = 302) {
+            $base_url = "http://$_SERVER[HTTP_HOST]/projet";
+            header('Location: ' . $base_url . $to, true, $status);
+            die();
+        }
+    }
+
+require_once "app/Middleware/Auth.php";
+
+
+Session::start();

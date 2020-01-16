@@ -57,7 +57,7 @@ class View {
         $this->set('main-section-content', $main_section_content);
 
         ob_start();
-        include_once 'resources/views/layouts/app.php';
+        include_once env('ROOT_PATH') . 'resources/views/layouts/app.php';
         $output = ob_get_contents();
         ob_end_clean();
         echo $output;

@@ -10,4 +10,18 @@ class User extends Model {
 
     protected $fillable = ['nom', 'prenom', 'email', 'numero', 'adresse'];
 
+    /**
+     * Get the client model associated to the this user, if there is one.
+     */
+    public function client() {
+        return $this->hasSlave('Client');
+    }
+
+    /**
+     * Get the traducteur model associated to the this user, if there is one.
+     */
+    public function traducteur() {
+        return $this->hasSlave('Traducteur');
+    }
+
 }

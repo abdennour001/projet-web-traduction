@@ -14,7 +14,7 @@ class CreateDevisTable extends Migration {
     {
         // TODO: Implement up() method.
         Schema::create('devis', [
-            'id_devis' => 'INT(6) UNSIGNED PRIMARY KEY',
+            'id_devis' => 'INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY',
             'nom' => "VARCHAR(30) NOT NULL",
             'prenom' => "VARCHAR(30) NOT NULL",
             'email' => "VARCHAR(30) NOT NULL",
@@ -25,9 +25,14 @@ class CreateDevisTable extends Migration {
             'etat' => "ENUM('pas-encore-demarre', 'en-cours', 'finis', 'abandonne') NOT NULL DEFAULT 'pas-encore-demarre'",
             'traducteur_assermente' => "BOOLEAN NOT NULL DEFAULT false",
             'date' => "TIMESTAMP",
+            'id_client' => 'INT(6) UNSIGNED NOT NULL',
+            'id_document' => 'INT(6) UNSIGNED NOT NULL',
 
             'created_at' => 'TIMESTAMP',
             'updated_at' => 'TIMESTAMP',
+
+            'FOREIGN KEY (id_client) REFERENCES client(id_client) ON UPDATE CASCADE ON DELETE CASCADE',
+            'FOREIGN KEY (id_document) REFERENCES document(id_document) ON UPDATE CASCADE ON DELETE CASCADE',
         ]);
     }
 

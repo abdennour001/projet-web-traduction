@@ -8,4 +8,8 @@ class Langue extends Model {
 
     protected $fillable = ['nom', 'description'];
 
+    public function Traducteurs() {
+        return $this->belongsToMany('Traducteur', 'traducteur_langue', 'id_traducteur');
+    }
+
 }

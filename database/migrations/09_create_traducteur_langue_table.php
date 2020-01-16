@@ -3,33 +3,34 @@
 require_once 'config/Migration.php';
 require_once 'config/Schema.php';
 
-class CreatePieceJointeTable extends Migration {
+class CreateTraducteurLangueTable extends Migration {
 
     public function __construct() {
         $this->down();
         $this->up();
     }
 
-    public function up() {
+    public function up()
+    {
         // TODO: Implement up() method.
-        Schema::create('piece_jointe', [
-            'id_piece_jointe' => 'INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY',
-            'type' => "ENUM('cv', 'reference', 'assermentation') NOT NULL",
-            'path' => "VARCHAR(150) NOT NULL",
-            'description' => "TEXT",
+        Schema::create('traducteur_langue', [
+            'id_traducteur_langue' => 'INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY',
             'id_traducteur' => 'INT(6) UNSIGNED NOT NULL',
+            'id_langue' => 'INT(6) UNSIGNED NOT NULL',
 
             'created_at' => 'TIMESTAMP',
             'updated_at' => 'TIMESTAMP',
 
             'FOREIGN KEY (id_traducteur) REFERENCES traducteur(id_traducteur) ON UPDATE CASCADE ON DELETE CASCADE',
+            'FOREIGN KEY (id_langue) REFERENCES langue(id_langue) ON UPDATE CASCADE ON DELETE CASCADE',
         ]);
     }
 
-    public function down() {
+    public function down()
+    {
         // TODO: Implement down() method.
-        Schema::dropIfExists('piece_jointe');
+        Schema::dropIfExists('traducteur_langue');
     }
 }
 
-new CreatePieceJointeTable();
+new CreateTraducteurLangueTable();

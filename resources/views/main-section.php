@@ -1,9 +1,9 @@
 <div class="row text-left secondary-container ml-4" style="padding-top: 15px;padding-bottom: 15px;">
     <div class="col-12">
         <div class="d-flex flex-row-reverse align-items-baseline">
-            <a href="<?php echo url('/signup')?>" class="ml-2 btn btn-secondary card-link">Inscription</a>
+            <a href="<?php echo url('/sign-up')?>" class="ml-2 btn btn-secondary card-link">Inscription</a>
             <p class="ml-2">où</p>
-            <a href="<?php echo url('/signin')?>" class="btn btn-primary card-link">Connexion</a>
+            <a href="<?php echo url('/login')?>" class="btn btn-primary card-link">Connexion</a>
         </div>
     </div>
     <div class="col-8 offset-2 my-4">

@@ -22,7 +22,11 @@ class Schema
             $sql_string = "CREATE TABLE ". $table_name ." (";
 
             foreach ($column_map as $column => $type) {
-                $sql_string .= $column . ' ' . $type . ', ';
+                if (!is_numeric($column)) {
+                    $sql_string .= $column . ' ' . $type . ', ';
+                } else {
+                    $sql_string .= ' ' . $type . ', ';
+                }
             }
 
             $sql_string = substr($sql_string, 0, -2);

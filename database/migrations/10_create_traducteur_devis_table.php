@@ -3,7 +3,7 @@
 require_once 'config/Migration.php';
 require_once 'config/Schema.php';
 
-class CreateDocumentTable extends Migration {
+class CreateTraducteurDevisTable extends Migration {
 
     public function __construct() {
         $this->down();
@@ -13,15 +13,15 @@ class CreateDocumentTable extends Migration {
     public function up()
     {
         // TODO: Implement up() method.
-        Schema::create('document', [
-            'id_document' => 'INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY',
-            'path' => "VARCHAR(150) NOT NULL",
-            'date' => 'TIMESTAMP',
+        Schema::create('traducteur_devis', [
+            'id_traducteur_devis' => 'INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY',
+            'id_traducteur' => 'INT(6) UNSIGNED NOT NULL',
             'id_devis' => 'INT(6) UNSIGNED NOT NULL',
 
             'created_at' => 'TIMESTAMP',
             'updated_at' => 'TIMESTAMP',
 
+            'FOREIGN KEY (id_traducteur) REFERENCES traducteur(id_traducteur) ON UPDATE CASCADE ON DELETE CASCADE',
             'FOREIGN KEY (id_devis) REFERENCES devis(id_devis) ON UPDATE CASCADE ON DELETE CASCADE',
         ]);
     }
@@ -29,8 +29,8 @@ class CreateDocumentTable extends Migration {
     public function down()
     {
         // TODO: Implement down() method.
-        Schema::dropIfExists('document');
+        Schema::dropIfExists('traducteur_devis');
     }
 }
 
-new CreateDocumentTable();
+new CreateTraducteurDevisTable();

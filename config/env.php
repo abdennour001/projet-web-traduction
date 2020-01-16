@@ -13,5 +13,3 @@
 	foreach ($variables as $key => $value) {
 		putenv("$key=$value");
 	}
-
-?>
