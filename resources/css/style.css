@@ -134,6 +134,10 @@ body {
     padding-bottom: 1rem;
 }
 
+.invalid {
+    margin-top: 5px;
+}
+
 /** media queries **/
 @media screen and (max-width: 992px) {
     .carousel-caption {

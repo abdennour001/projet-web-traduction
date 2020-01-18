@@ -9,8 +9,12 @@ class LoginController {
      * @throws Exception
      */
     public static function index() {
-        $login_page = new View(env('ROOT_PATH').'resources/views/forms/signin.php');
-        $login_page->render();
+        if (Auth::hasUser()) {
+            redirect('/');
+        } else {
+            $login_page = new View('forms/signin.php');
+            $login_page->render();
+        }
     }
 
     /**
@@ -19,7 +23,23 @@ class LoginController {
      * @param $request
      */
     public static function login($request) {
+        $email = $request->getBody()['email'];
 
+        $user_array = User::where([
+            'email' => $email
+        ]);
+        if (empty($user_array)) { // no user email with this email.
+            redirect("/login", ["error-sign-in" => 'Veuillez vérifier votre adresse email.']);
+        } else {
+            $user = $user_array[0];
+            $password = $request->getBody()['password'];
+            if (md5($password) == $user->password) {
+                Session::put(['user' => $user]);
+                redirect("/");
+            } else { // wrong password
+                redirect("/login", ["error-sign-in" => 'Votre mot de passe est incorrect.']);
+            }
+        }
     }
 
     /**
@@ -27,7 +47,8 @@ class LoginController {
      *
      */
     public static function logout() {
-
+        Session::forget('user');
+        redirect('/login');
     }
 
 }

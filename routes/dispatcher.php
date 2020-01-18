@@ -4,6 +4,8 @@ require_once 'Request.php';
 require_once 'Router.php';
 require_once 'app/Controllers/HomeController.php';
 require_once 'app/Controllers/LoginController.php';
+require_once 'app/Controllers/TraducteursController.php';
+require_once 'app/Controllers/ArticlesController.php';
 require_once 'app/Middleware/Register.php';
 
 
@@ -29,6 +31,30 @@ $router->get("/sign-up", function () {
     Register::index();
 });
 
-$router->post("/signup/signing", function ($request) {
+$router->post("/sign-up/signing", function ($request) {
     Register::sign_up($request);
+});
+
+$router->get("/recruitment", function () {
+    TraducteursController::index();
+});
+
+$router->get("/our-translations", function () {
+    TraducteursController::index_our_translations();
+});
+
+$router->get("/our-translators", function () {
+    TraducteursController::index_our_translators();
+});
+
+$router->get("/blog", function () {
+    ArticlesController::index();
+});
+
+$router->get("/recruitment", function () {
+    TraducteursController::index();
+});
+
+$router->get("/about", function () {
+    HomeController::about();
 });

@@ -7,6 +7,7 @@ class Session {
      * Session constructor.
      */
     public function __construct() {
+        session_write_close();
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
@@ -16,7 +17,7 @@ class Session {
      * Start a new session.
      */
     public static function start() {
-         new static;
+        new static;
     }
 
     /**

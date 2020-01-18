@@ -18,6 +18,7 @@ class CreateUserTable extends Migration {
             'nom' => 'VARCHAR(30) NOT NULL',
             'prenom' => 'VARCHAR(30) NOT NULL',
             'email' => 'VARCHAR(30) NOT NULL',
+            'password' => 'CHAR(100) NOT NULL',
             'numero' => 'VARCHAR(30) NOT NULL',
             'adresse' => 'VARCHAR(150) NOT NULL',
 
@@ -26,8 +27,7 @@ class CreateUserTable extends Migration {
         ]);
     }
 
-    public function down()
-    {
+    public function down() {
         // TODO: Implement down() method.
         Schema::dropIfExists('user');
     }

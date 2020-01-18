@@ -1,6 +1,10 @@
 <?php
 
-require_once "config/Session.php";
+include 'app/Models/Client.php';
+include 'app/Models/Traducteur.php';
+include 'app/Models/User.php';
+require "config/Session.php";
+require "app/Middleware/Auth.php";
 
 	if(file_exists(__DIR__.'/env.php')) {
 		include __DIR__.'/env.php';
@@ -36,14 +40,34 @@ require_once "config/Session.php";
 	}
 
 	if (! function_exists('redirect')) {
-	    function redirect($to = null, $status = 302) {
+	    function redirect($to = null, $data = null, $status = 302) {
             $base_url = "http://$_SERVER[HTTP_HOST]/projet";
             header('Location: ' . $base_url . $to, true, $status);
+            if (!is_null($data)) {
+                Session::put($data);
+            };
             die();
         }
     }
 
-require_once "app/Middleware/Auth.php";
+	if (! function_exists('old')) {
+	    function old($key) {
+	        if (Session::has($key)) {
+	            $value = Session::get($key);
+	            Session::forget($key);
+	            return $value;
+            }
+	        return null;
+        }
+    }
 
+	if (! function_exists('current_url')) {
+	    function current_url() {
+	        if (preg_match('/\/projet(\/.*)/', $_SERVER['REQUEST_URI'] , $match) == 1) {
+	            return $match[1];
+            }
+	        return null;
+        }
+    }
 
-Session::start();
+	Session::start();

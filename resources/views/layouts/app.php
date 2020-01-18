@@ -56,30 +56,30 @@
         </button>
         <div class="collapse navbar-collapse" id="navBarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Accueil</a>
+                <li class="nav-item <?php if(current_url() == '/' || current_url() == '/login' || current_url() == '/sign-up') echo "active"?>">
+                    <a class="nav-link" href="<?php echo url('/')?>">Accueil</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Nos Traductions</a>
+                <li class="nav-item <?php if(current_url() == '/our-translations') echo "active" ?>">
+                    <a class="nav-link" href="<?php echo url('/our-translations')?>">Nos Traductions</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Nos Traducteurs</a>
+                <li class="nav-item <?php if(current_url() == '/our-translators') echo "active" ?>">
+                    <a class="nav-link" href="<?php echo url('/our-translators')?>">Nos Traducteurs</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Notre Blog</a>
+                <li class="nav-item <?php if(current_url() == '/blog') echo "active" ?>">
+                    <a class="nav-link" href="<?php echo url('/blog')?>">Notre Blog</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Recrutement</a>
+                <li class="nav-item <?php if(current_url() == '/recruitment') echo "active" ?>">
+                    <a class="nav-link" href="<?php echo url('/recruitment') ?>">Recrutement</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">À propos</a>
+                <li class="nav-item <?php if(current_url() == '/about') echo "active" ?>">
+                    <a class="nav-link" href="<?php echo url('/about')?>">À propos</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<aside class="social-sharing">
+<aside class="social-sharing" id="sideSocialMediaIcons">
     <ul class="menu-social">
         <li>
             <a class="social-item" href="#" title="facebook">

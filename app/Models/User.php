@@ -8,7 +8,7 @@ class User extends Model {
     protected $table = 'user';
     protected $primaryKey = 'id_user';
 
-    protected $fillable = ['nom', 'prenom', 'email', 'numero', 'adresse'];
+    protected $fillable = ['nom', 'prenom', 'email', 'password', 'numero', 'adresse'];
 
     /**
      * Get the client model associated to the this user, if there is one.

@@ -1,9 +1,5 @@
 <?php
 
-require_once 'config/Session.php';
-require_once 'app/Models/Client.php';
-require_once 'app/Models/Traducteur.php';
-require_once 'app/Models/User.php';
 
 class Auth {
 

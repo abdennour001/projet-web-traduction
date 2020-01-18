@@ -14,7 +14,7 @@ class View {
     protected $_data = array();
 
     public function __construct($file, $data = null) {
-        $this->_file = $file;
+        $this->_file = env('ROOT_PATH').'resources/views/' . $file;
         $this->_data = $data;
     }
 
