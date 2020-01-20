@@ -32,4 +32,8 @@ class Traducteur extends Model {
         return $this->belongsToMany("Langue", "traducteur_langue", "id_langue");
     }
 
+    public function demande() {
+        return $this->hasOne("Demande", "id_traducteur");
+    }
+
 }

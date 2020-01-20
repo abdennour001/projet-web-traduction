@@ -19,6 +19,13 @@ trait HasRelationShips {
     }
 
     /**
+     * Define a one-to-one through relationship.
+     */
+    public function hasOneThrough($related, $localkey = null) {
+        return $related::find($this->{$localkey}) ?: null;
+    }
+
+    /**
      * Define an inverse one-to-one or many relationship.
      *
      * @param $related

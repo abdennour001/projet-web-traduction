@@ -8,7 +8,7 @@ class Document extends Model {
     protected $table = 'document';
     protected $primaryKey = 'id_document';
 
-    protected $fillable = ['path', 'date'];
+    protected $fillable = ['path', 'date', 'id_devis'];
 
     /**
      * @return mixed

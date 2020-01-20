@@ -62,15 +62,16 @@ abstract class Model {
      *
      * Get all the models in the database.
      *
+     * @param string $order_by
      * @return array
      */
-    public static function all() {
+    public static function all($order_by = 'ASC') {
         $resultArray = [];
         $self = new static;
         try {
             $conn = ConnexionDB::get_connexion();
 
-            $stmt = $conn->prepare("SELECT * FROM " . $self->table);
+            $stmt = $conn->prepare("SELECT * FROM " . $self->table . " ORDER BY created_at ". $order_by);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $_resultArray = $stmt->fetchAll();
@@ -275,6 +276,52 @@ abstract class Model {
         } else {
             echo "Can't attach, relation already exist.";
         }
+    }
+
+    /**
+     * Paginate the query.
+     *
+     * @param $no_items_per_page
+     * @return mixed
+     */
+    public static function paginate($no_items_per_page) {
+        $resultArray = [];
+        $self = new static;
+
+        if (isset($_GET['page_no'])) {
+            $page_no = $_GET['page_no'];
+        } else {
+            $page_no = 1;
+        }
+
+        $offset = ($page_no-1) * $no_items_per_page;
+
+        try {
+            $conn = ConnexionDB::get_connexion();
+
+            $stmt_count = $conn->prepare("SELECT count(*) FROM " . $self->table);
+            $stmt_count->execute();
+            $total_rows = $stmt_count->fetch()[0];
+
+            $total_pages = ceil($total_rows / $no_items_per_page);
+
+            $stmt = $conn->prepare("SELECT * FROM " . $self->table . " ORDER BY updated_at DESC LIMIT $offset, $no_items_per_page");
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $_resultArray = $stmt->fetchAll();
+            foreach ($_resultArray as $row) {
+                $model = new static;
+                foreach ($row as $k => $v) {
+                    $model->{$k} = $v;
+                }
+                array_push($resultArray, $model);
+            }
+
+            ConnexionDB::close_connexion();
+        } catch (PDOException $e) {
+            echo "Can't run statement : " . $e->getMessage();
+        }
+        return ["result" => $resultArray, "page_no" => $page_no, "total_pages" => $total_pages];
     }
 
     /**

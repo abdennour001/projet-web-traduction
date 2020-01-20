@@ -3,6 +3,11 @@
 include 'app/Models/Client.php';
 include 'app/Models/Traducteur.php';
 include 'app/Models/User.php';
+include 'app/Models/Devis.php';
+include 'app/Models/Langue.php';
+include 'app/Models/Document.php';
+include 'app/Models/PieceJointe.php';
+include 'app/Models/Demande.php';
 require "config/Session.php";
 require "app/Middleware/Auth.php";
 
@@ -67,6 +72,26 @@ require "app/Middleware/Auth.php";
 	            return $match[1];
             }
 	        return null;
+        }
+    }
+
+	if (! function_exists('upload_file')) {
+	    function upload_file($file, $path = "") {
+            $origin = $_SERVER['DOCUMENT_ROOT'];
+            $upload_file = $origin . "projet/public/storage/uploads/" . $path;
+            // upload the file
+            if (move_uploaded_file($file['tmp_name'], $upload_file)) {
+                return $upload_file;
+            } else {
+                return null;
+            }
+        }
+    }
+
+	if (! function_exists('unlink_file')) {
+	    function unlink_file($file_path) {
+            unlink($file_path);
+            return;
         }
     }
 

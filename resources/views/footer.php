@@ -5,7 +5,7 @@
             <!-- Grid column -->
             <div class="col-md-2 mb-3">
                 <h6 class="text-uppercase font-weight-bold">
-                    <a href="#!">Accueil</a>
+                    <a href="<?php echo url('/')?>">Accueil</a>
                 </h6>
             </div>
             <!-- Grid column -->
@@ -13,7 +13,7 @@
             <!-- Grid column -->
             <div class="col-md-2 mb-3">
                 <h6 class="text-uppercase font-weight-bold">
-                    <a href="#!">Nos Traductions</a>
+                    <a href="<?php echo url('/our-translations')?>">Nos Traductions</a>
                 </h6>
             </div>
             <!-- Grid column -->
@@ -21,7 +21,7 @@
             <!-- Grid column -->
             <div class="col-md-2 mb-3">
                 <h6 class="text-uppercase font-weight-bold">
-                    <a href="#!">Nos Traducteurs</a>
+                    <a href="<?php echo url('/our-translators')?>">Nos Traducteurs</a>
                 </h6>
             </div>
             <!-- Grid column -->
@@ -29,7 +29,7 @@
             <!-- Grid column -->
             <div class="col-md-2 mb-3">
                 <h6 class="text-uppercase font-weight-bold">
-                    <a href="#!">Notre Blog</a>
+                    <a href="<?php echo url('/blog')?>">Notre Blog</a>
                 </h6>
             </div>
             <!-- Grid column -->
@@ -37,7 +37,7 @@
             <!-- Grid column -->
             <div class="col-md-2 mb-3">
                 <h6 class="text-uppercase font-weight-bold">
-                    <a href="#!">Recrutement</a>
+                    <a href="<?php echo url('/devis') ?>">Recrutement</a>
                 </h6>
             </div>
             <!-- Grid column -->
@@ -45,7 +45,7 @@
             <!-- Grid column -->
             <div class="col-md-2 mb-3">
                 <h6 class="text-uppercase font-weight-bold">
-                    <a href="#!">À propos</a>
+                    <a href="<?php echo url('/about')?>">À propos</a>
                 </h6>
             </div>
             <!-- Grid column -->

@@ -6,6 +6,10 @@ require_once 'app/Controllers/HomeController.php';
 require_once 'app/Controllers/LoginController.php';
 require_once 'app/Controllers/TraducteursController.php';
 require_once 'app/Controllers/ArticlesController.php';
+require_once 'app/Controllers/NotificationsController.php';
+require_once 'app/Controllers/DevisController.php';
+require_once 'app/Controllers/ClientsController.php';
+require_once 'app/Controllers/TraducteursController.php';
 require_once 'app/Middleware/Register.php';
 
 
@@ -55,6 +59,50 @@ $router->get("/recruitment", function () {
     TraducteursController::index();
 });
 
+$router->post("/recruitment/send", function ($request) {
+    TraducteursController::recruitment($request);
+});
+
 $router->get("/about", function () {
     HomeController::about();
+});
+
+$router->get("/notifications", function () {
+    NotificationsController::index();
+});
+
+$router->get("/devis", function () {
+    DevisController::index();
+});
+
+$router->post("/devis/send", function ($request) {
+    DevisController::sendDevis($request);
+});
+
+$router->get("/client", function () {
+    ClientsController::profile();
+});
+
+$router->get("/traducteur", function () {
+    TraducteursController::profile();
+});
+
+$router->get("/edit-client", function () {
+    ClientsController::editProfile();
+});
+
+$router->get("/edit-traducteur", function () {
+    TraducteursController::editProfile();
+});
+
+$router->post("/edit-client/editing", function ($request) {
+    ClientsController::editingProfile($request);
+});
+
+$router->post("/edit-traducteur/editing", function ($request) {
+    TraducteursController::editingProfile($request);
+});
+
+$router->get("/article", function ($request) {
+    ArticlesController::article($request);
 });

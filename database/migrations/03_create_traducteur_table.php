@@ -17,6 +17,7 @@ class CreateTraducteurTable extends Migration {
             'id_traducteur' => 'INT(6) UNSIGNED PRIMARY KEY',
             'est_assermente' => "BOOLEAN NOT NULL DEFAULT false",
             'est_approuve' => "BOOLEAN NOT NULL DEFAULT false",
+            'note' => "SMALLINT UNSIGNED DEFAULT 0",
 
             'created_at' => 'TIMESTAMP',
             'updated_at' => 'TIMESTAMP',

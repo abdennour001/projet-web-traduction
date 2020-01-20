@@ -20,6 +20,9 @@ class CreateUserTable extends Migration {
             'email' => 'VARCHAR(30) NOT NULL',
             'password' => 'CHAR(100) NOT NULL',
             'numero' => 'VARCHAR(30) NOT NULL',
+            'fax' => 'VARCHAR(30) NOT NULL',
+            'commune' => 'VARCHAR(150) NOT NULL',
+            'wilaya' => 'VARCHAR(150) NOT NULL',
             'adresse' => 'VARCHAR(150) NOT NULL',
 
             'created_at' => 'TIMESTAMP',

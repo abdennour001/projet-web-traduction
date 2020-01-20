@@ -34,4 +34,5 @@ class HomeController {
         $about_page = new View('about.php');
         $about_page->render();
     }
+
 }

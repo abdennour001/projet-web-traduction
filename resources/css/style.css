@@ -24,7 +24,7 @@ body {
     padding: .2rem;
 }
 
-.active > a {
+.active > a.nav-link {
     -webkit-text-fill-color: dodgerblue;
 }
 
@@ -71,7 +71,6 @@ body {
     display: flex;
     flex-direction: column;
     -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrapwrap;
     flex-wrap: nowrap;
 }
 
@@ -82,15 +81,15 @@ body {
     text-decoration: none;
     height: 50px;
     width: 50px;
-    transition: 0.25s ease-in;
 }
 
 .social-sharing ul.menu-social a.social-item i {
     font-size: 22px;
     color: dodgerblue;
+    transition: 0.25s ease-in;
 }
 
-.social-sharing ul.menu-social a.social-item:hover {
+.social-sharing ul.menu-social a.social-item:hover i {
     transform: translateX(14px);
 }
 
@@ -260,4 +259,9 @@ body {
 
 .footer .footer-copyright {
     background: #25292f;
+}
+
+.help-block.with-errors {
+    color: #ff5050;
+    margin-top: 5px;
 }

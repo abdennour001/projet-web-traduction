@@ -34,6 +34,9 @@ class Register {
             $user->email = $request->getBody()['email'];
             $user->password = md5($request->getBody()['password']);
             $user->numero = $request->getBody()['numero'];
+            $user->fax = $request->getBody()['fax'];
+            $user->wilaya = $request->getBody()['wilaya'];
+            $user->commune = $request->getBody()['commune'];
             $user->adresse = $request->getBody()['adresse'];
             $user->save();
 

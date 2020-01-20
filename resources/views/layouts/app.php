@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
@@ -38,7 +40,9 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,800&display=swap" rel="stylesheet">
 
     <!-- Google reCaptcha -->
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+
+    <script src="resources/js/validator.js"></script>
 
     <title>Projet Traduction</title>
 </head>
@@ -68,9 +72,15 @@
                 <li class="nav-item <?php if(current_url() == '/blog') echo "active" ?>">
                     <a class="nav-link" href="<?php echo url('/blog')?>">Notre Blog</a>
                 </li>
-                <li class="nav-item <?php if(current_url() == '/recruitment') echo "active" ?>">
-                    <a class="nav-link" href="<?php echo url('/recruitment') ?>">Recrutement</a>
-                </li>
+                <?php if (Auth::type() == Client::class) : ?>
+                    <li class="nav-item <?php if(current_url() == '/devis') echo "active" ?>">
+                        <a class="nav-link" href="<?php echo url('/devis') ?>">Devis</a>
+                    </li>
+                <?php else : ?>
+                    <li class="nav-item <?php if(current_url() == '/recruitment') echo "active" ?>">
+                        <a class="nav-link" href="<?php echo url('/recruitment') ?>">Recrutement</a>
+                    </li>
+                <?php endif; ?>
                 <li class="nav-item <?php if(current_url() == '/about') echo "active" ?>">
                     <a class="nav-link" href="<?php echo url('/about')?>">À propos</a>
                 </li>
@@ -131,8 +141,8 @@
                         <h3>Traduisez facilement vos documents avec nous</h3>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <img src="https://www.migaltranslations.com/sites/default/files/translation.jpg" alt="">
+                <div class="carousel-item text-center">
+                    <img class="w-75" src="https://store-images.s-microsoft.com/image/apps.57355.13931251942486540.f20f96b5-e764-4ecb-8e10-4e09c3fb668c.b9cd5dc2-b11d-42ea-bcc9-cd1dfdda0e0f?mode=scale&q=90&h=1080&w=1920" alt="">
                 </div>
                 <div class="carousel-item">
                     <img src="https://www.migaltranslations.com/sites/default/files/translation.jpg" alt=""

@@ -8,7 +8,15 @@ class User extends Model {
     protected $table = 'user';
     protected $primaryKey = 'id_user';
 
-    protected $fillable = ['nom', 'prenom', 'email', 'password', 'numero', 'adresse'];
+    protected $fillable = ['nom',
+        'prenom',
+        'email',
+        'password',
+        'numero',
+        'fax',
+        'adresse',
+        'commune',
+        'wilaya'];
 
     /**
      * Get the client model associated to the this user, if there is one.
@@ -22,6 +30,15 @@ class User extends Model {
      */
     public function traducteur() {
         return $this->hasSlave('Traducteur');
+    }
+
+    /**
+     * Return this user's notifications.
+     *
+     * @return mixed
+     */
+    public function notifications() {
+        return $this->hasMany("Notification", "id_user");
     }
 
 }

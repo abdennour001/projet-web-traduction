@@ -15,7 +15,7 @@
 
         private function toCamelCase($string) {
             $result = strtolower($string);
-                
+
             preg_match_all('/_[a-z]/', $result, $matches);
             foreach($matches[0] as $match) {
                 $c = str_replace('_', '', strtoupper($match));
@@ -26,7 +26,11 @@
 
         public function getBody() {
             if($this->requestMethod === "GET") {
-                return;
+                $body = array();
+                foreach($_GET as $key => $value) {
+                    $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                }
+                return $body;
             }
             if ($this->requestMethod == "POST") {
                 $body = array();

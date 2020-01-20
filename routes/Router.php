@@ -36,6 +36,10 @@ class Router
         $route = str_replace($this->baseURI, "", $route);
         $result = rtrim($route, '/');
 
+        if (preg_match('/(.*)\?(.*?)/', $result , $match) == 1) {
+            $result = $match[1];
+        }
+
         if ($result === '')
         {
             return '/';

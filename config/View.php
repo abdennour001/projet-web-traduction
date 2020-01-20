@@ -29,6 +29,10 @@ class View {
         return null;
     }
 
+    public function has($key) {
+        return ($this->_data == null ? false : array_key_exists($key, $this->_data));
+    }
+
     public function render() {
         if (!file_exists($this->_file)) {
             throw new Exception("Template " . $this->_file . " doesn't exist.");
