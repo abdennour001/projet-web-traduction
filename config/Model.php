@@ -190,10 +190,11 @@ abstract class Model {
             $conn->exec($sql);
 
             ConnexionDB::close_connexion();
+            $last_id = $conn->lastInsertId();
+            return $last_id;
         } catch (PDOException $e) {
             die("Can't insert data : " . $e->getMessage());
         }
-        return true;
     }
 
     /**
@@ -245,6 +246,10 @@ abstract class Model {
         return true;
     }
 
+    public static function lastID() {
+
+    }
+
     /**
      * Associate the model $model to this model.
      *
@@ -282,14 +287,16 @@ abstract class Model {
      * Paginate the query.
      *
      * @param $no_items_per_page
+     * @param string $page_no_label
+     * @param string $total_pages_label
      * @return mixed
      */
-    public static function paginate($no_items_per_page) {
+    public static function paginate($no_items_per_page, $page_no_label = "page_no", $total_pages_label = "total_pages") {
         $resultArray = [];
         $self = new static;
 
-        if (isset($_GET['page_no'])) {
-            $page_no = $_GET['page_no'];
+        if (isset($_GET[$page_no_label])) {
+            $page_no = $_GET[$page_no_label];
         } else {
             $page_no = 1;
         }
@@ -321,7 +328,7 @@ abstract class Model {
         } catch (PDOException $e) {
             echo "Can't run statement : " . $e->getMessage();
         }
-        return ["result" => $resultArray, "page_no" => $page_no, "total_pages" => $total_pages];
+        return ["result" => $resultArray, $page_no_label => $page_no, $total_pages_label => $total_pages];
     }
 
     /**

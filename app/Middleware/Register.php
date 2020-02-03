@@ -46,6 +46,15 @@ class Register {
 
             $type = $request->getBody()['type'];
 
+
+            $notification = new Notification();
+            $notification->id_user = $saved_user->id_user;
+            $notification->vu = 0;
+            $notification->title = "Félicitations, Inscription terminée!";
+            $notification->description = "Félicitations, vous êtes un nouveau membre avec nous.";
+            $notification->save();
+
+
             if ($type == 'Client') { // create new Client
                 $client = new Client();
                 $client->id_client = $saved_user->id_user;

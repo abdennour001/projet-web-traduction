@@ -1,7 +1,5 @@
 <?php
 
-require_once "config/Model.php";
-
 class TraducteurDevis extends Model {
 
     protected $table = 'traducteur_devis';

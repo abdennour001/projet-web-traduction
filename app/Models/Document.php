@@ -16,4 +16,11 @@ class Document extends Model {
     public function devis() {
         return $this->belongsTo('Devis');
     }
+
+    /**
+     * @return mixed
+     */
+    public function traduction() {
+        return $this->belongsTo("Traduction", "id_document");
+    }
 }

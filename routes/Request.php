@@ -35,7 +35,11 @@
             if ($this->requestMethod == "POST") {
                 $body = array();
                 foreach($_POST as $key => $value) {
-                    $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                    if (is_array($value)) {
+                        $body[$key] = $value;
+                    } else {
+                        $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                    }
                 }
                 foreach($_FILES as $key => $value) {
                     $body[$key] = $value;

@@ -7,7 +7,11 @@ include 'app/Models/Devis.php';
 include 'app/Models/Langue.php';
 include 'app/Models/Document.php';
 include 'app/Models/PieceJointe.php';
+include 'app/Models/Notification.php';
+include 'app/Models/Traduction.php';
 include 'app/Models/Demande.php';
+include 'app/Models/Admin.php';
+include 'config/sideline/Blocked.php';
 require "config/Session.php";
 require "app/Middleware/Auth.php";
 
@@ -92,6 +96,15 @@ require "app/Middleware/Auth.php";
 	    function unlink_file($file_path) {
             unlink($file_path);
             return;
+        }
+    }
+
+	if (! function_exists('document_name')) {
+	    function document_name($path, $type = 'document-source-devis') {
+            if (preg_match('/(.*)'. $type .'(.*)/', $path , $match) == 1) {
+                return $type . $match[2];
+            }
+            return null;
         }
     }
 

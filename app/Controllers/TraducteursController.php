@@ -135,6 +135,42 @@ class TraducteursController {
         $demande->id_traducteur = Auth::id();
         $demande->save();
 
+        $traducteur = Auth::user()->traducteur();
+
+        foreach ($body['langues'] as $id) {
+            $traducteur->attach(Langue::find($id));
+        };
+
         redirect("/", ["demande-envoye" => "Vous avez envoyé une demande de recrutement avec succès, vous devez attendre que l'administrateur l'approuve."]);
     }
+
+    /**
+     * @param $request
+     */
+    public static function search($request) {
+        $body = $request->getBody();
+
+        $langueSource = $body['langueSource'];
+        $langueDest = $body['langueDest'];
+
+        $translators = Traducteur::all();
+        $result_array = array();
+
+        foreach ($translators as $translator) {
+            $langues = $translator->langues();
+            $ids = array_map(function ($l) { return $l->id_langue; }, $langues);
+
+            if (in_array($langueSource, $ids) && in_array($langueDest, $ids)) {
+                array_push($result_array, $translator);
+            };
+        }
+
+
+        if (!empty($result_array)) {
+            redirect("/our-translators", ['list_traducteur' => $result_array, 'langueSource' => $langueSource, 'langueDest' => $langueDest]);
+        } else {
+            redirect("/our-translators", ['langueSource' => $langueSource, 'langueDest' => $langueDest]);
+        }
+    }
+
 }

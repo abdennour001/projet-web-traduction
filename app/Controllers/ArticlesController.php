@@ -6,7 +6,6 @@ class ArticlesController {
     /**
      *  Render the blog view.
      *
-     * @param $request
      * @throws Exception
      */
     public static function index() {

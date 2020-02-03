@@ -28,4 +28,16 @@ class Auth {
         return null;
     }
 
+    // section admin
+    public static function admin() {
+        if (Session::isLive()) {
+            return Session::get('admin');
+        }
+        return null;
+    }
+
+    public static function hasAdmin() {
+        return Session::has('admin');
+    }
+
 }

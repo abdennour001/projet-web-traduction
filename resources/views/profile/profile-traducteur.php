@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-8 offset-2">
-        <h1 class="text-center text-black-50 mb-5">Profile Traducteur</h1>
+        <h1 class="text-center text-black-50 mb-4">Profile Traducteur</h1>
 
         <div class="d-flex align-items-baseline justify-content-center mb-5">
             <?php for ($i = 1; $i<=5; $i++) : ?>
@@ -11,13 +11,33 @@
         <div class="d-flex align-items-baseline justify-content-between text-left my-4">
             <div class="d-flex">
                 <h4 class="text-black-50 font-weight-bold">Approuvé:</h4>
-                <p class="lead ml-2"><?php echo Auth::user()->traducteur()->est_approuve ? "Oui" : "Non" ;?></p>
+                <p class="lead ml-2 <?php echo Auth::user()->traducteur()->est_approuve ? "text-success" : "text-danger"; ?>">
+                    <?php echo Auth::user()->traducteur()->est_approuve ? "Oui" : "Non" ;?>
+                </p>
             </div>
             <div class="d-flex">
                 <h4 class="text-black-50 font-weight-bold">Assermenté:</h4>
-                <p class="lead ml-2"><?php echo Auth::user()->traducteur()->est_approuve ? "Oui" : "Non" ;?></p>
+                <p class="lead ml-2 <?php echo Auth::user()->traducteur()->est_assermente ? "text-success" : "text-danger"; ?>">
+                    <?php echo Auth::user()->traducteur()->est_assermente ? "Oui" : "Non" ;?>
+                </p>
             </div>
         </div>
+
+
+        <?php if (Auth::user()->traducteur()->est_approuve) : ?>
+            <div class="d-flex align-items-baseline justify-content-start text-left my-4">
+                <h4 class="text-black-50 font-weight-bold">Langues:</h4>
+                <div class="d-flex d-inline-flex flex-wrap">
+                    <?php foreach ($langues = Auth::user()->traducteur()->langues() as $langue) : ?>
+
+                        <a href="#" class="lead ml-2" style="background-color: dodgerblue; color: white; border-radius: 5px; padding: .2rem 1rem; text-decoration: none">
+                            <?php echo utf8_encode($langue->nom) ;?>
+                        </a>
+
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php endif; ?>
 
         <hr class="my-4">
 

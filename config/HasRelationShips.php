@@ -13,9 +13,15 @@ trait HasRelationShips {
      * @return mixed
      */
     public function hasOne($related, $foreignKey = null, $localKey = null) {
-        return $related::where([
+        $result_array = $related::where([
             $foreignKey => $this->{$this->primaryKey}
-        ])[0] ?: null;
+        ]);
+
+        if (empty($result_array)) {
+            return null;
+        } else {
+            return $result_array[0];
+        }
     }
 
     /**
@@ -35,9 +41,24 @@ trait HasRelationShips {
      * @return mixed
      */
     public function belongsTo($related, $foreignKey = null, $ownerKey = null, $relation = null) {
-        return $related::where([
-            $foreignKey ?: $this->primaryKey => $this->{$this->primaryKey}
-        ])[0] ?: null;
+
+        if ($foreignKey == null) {
+            $result_array = $related::where([
+                $this->primaryKey => $this->{$this->primaryKey}
+            ]);
+        } else {
+            $result_array = $related::where([
+                $foreignKey => $this->{$foreignKey}
+            ]);
+        }
+//        $result_array = $related::where([
+//            $foreignKey ? $foreignKey => $this->{$this->primaryKey} : $this->primaryKey => $this->{$this->primaryKey}
+//        ]);
+        if (empty($result_array)) {
+            return null;
+        } else {
+            return $result_array[0];
+        }
     }
 
     /**
@@ -80,7 +101,6 @@ trait HasRelationShips {
                         JOIN ". $table ." ON ". strtolower($related) .".". $foreignPivotKey ." = ". $table .".". $foreignPivotKey ."
                     WHERE
                         ". $table .".". $this->primaryKey ." = '". $this->{$this->primaryKey} . "'";
-            echo $query . "\n\n";
 
             $stmt = $conn->prepare($query);
             $stmt->execute();

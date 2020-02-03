@@ -265,3 +265,17 @@ body {
     color: #ff5050;
     margin-top: 5px;
 }
+
+.toggle-button {
+    box-shadow: none;
+    border: none;
+}
+
+.toggle-button:focus {
+    box-shadow: none;
+    border: none;
+}
+
+.clickable-row:hover {
+    cursor: pointer;
+}

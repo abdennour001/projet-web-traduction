@@ -33,9 +33,16 @@ class LoginController {
         } else {
             $user = $user_array[0];
             $password = $request->getBody()['password'];
+            $isBlocked = Blocked::where([
+                    'id_user' => $user->id_user
+                ]);
             if (md5($password) == $user->password) {
-                Session::put(['user' => $user]);
-                redirect("/");
+                if ($isBlocked == null) {
+                    Session::put(['user' => $user]);
+                    redirect("/");
+                } else {
+                    redirect("/login", ["error-sign-in" => "Votre compte a été bloqué, veuillez contacter l'administrateur."]);
+                }
             } else { // wrong password
                 redirect("/login", ["error-sign-in" => 'Votre mot de passe est incorrect.']);
             }

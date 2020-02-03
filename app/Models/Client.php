@@ -18,4 +18,11 @@ class Client extends Model {
         return $this->belongsToMaster('User');
     }
 
+    /**
+     *  Get all the devis of this client.
+     */
+    public function devis() {
+        return $this->hasMany("Devis");
+    }
+
 }

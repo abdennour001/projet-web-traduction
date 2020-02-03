@@ -1,16 +1,19 @@
 <div class="row">
-    <div class="col-8 offset-2">
+    <div class="col-6 offset-3">
         <form id="signInForm" method="post" action="<?php echo url('/login/auth')?>">
-            <div class="text-black-50 mb-4 text-center">
+            <div class="text-black-50 mb-5 text-center">
                 <h1>Connexion</h1>
             </div>
 
             <?php if (Session::has('error-sign-in')) : ?>
-                <div class="alert alert-danger border-danger">
+                <div class="alert alert-danger border-danger alert-dismissible fade show" role="alert">
                     <?php
                     echo Session::get('error-sign-in');
                     Session::forget('error-sign-in');
                     ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
             <?php endif; ?>
 

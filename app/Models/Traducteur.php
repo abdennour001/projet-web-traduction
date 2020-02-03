@@ -36,4 +36,8 @@ class Traducteur extends Model {
         return $this->hasOne("Demande", "id_traducteur");
     }
 
+    public function devis() {
+        return $this->hasMany("Devis", "id_traducteur");
+    }
+
 }

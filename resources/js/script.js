@@ -221,6 +221,9 @@ $(document).ready(function() {
                         return false;
                     }
                 }
+            },
+            langues : {
+                required : true,
             }
         },
         messages : {
@@ -229,6 +232,9 @@ $(document).ready(function() {
             },
             ass: {
                 required : "Veuillez entrer votre assermentation.",
+            },
+            langues: {
+                required : "Veuillez entrer vos langues.",
             }
         },
         ignore: ".ignore",
@@ -238,7 +244,6 @@ $(document).ready(function() {
             return false;
         },
     });
-
 
     $('#sendDevisForm').validator();
 
@@ -262,6 +267,42 @@ $(document).ready(function() {
         } else {
             $('#sideSocialMediaIcons').fadeOut("slow");
         }
+    });
+
+    $(document).ready(function () {
+
+        $(".item").on("click", function () {
+            let item = $( this );
+            let hidden = $("#selectedTranslator");
+            let checkMark = $('#'+item.attr("data-id"));
+
+            $(".item").each(function (index) {
+                $(this).removeClass('checked');
+            });
+
+            $(".display-i").each(function (index) {
+                $(this).removeClass('display-i');
+                $(this).addClass('not-display-i');
+            });
+
+            if (! (hidden.attr("value") === item.attr("data-id"))) {
+                item.addClass('checked');
+                hidden.attr("value", item.attr("data-id"));
+                checkMark.removeClass('not-display-i');
+                checkMark.addClass('display-i');
+            } else {
+                item.removeClass('checked');
+                hidden.attr("value", "");
+                checkMark.removeClass('display-i');
+                checkMark.addClass('not-display-i');
+            }
+
+            terminer.disabled = hidden.attr("value") === "";
+        })
+    });
+
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
     });
 
 });

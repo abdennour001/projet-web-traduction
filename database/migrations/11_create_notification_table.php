@@ -15,9 +15,10 @@ class CreateNotificationTable extends Migration {
         // TODO: Implement up() method.
         Schema::create('notification', [
             'id_notification' => 'INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY',
-            'title' => 'VARCHAR(30) NOT NULL',
+            'title' => 'VARCHAR(300) NOT NULL',
             'description' => 'TEXT',
             'vu' => "BOOLEAN NOT NULL DEFAULT false",
+            'type' => "ENUM('devis', 'demande-traduction', 'autre') NOT NULL DEFAULT 'autre'",
             'id_user' => 'INT(6) UNSIGNED NOT NULL',
 
             'created_at' => 'TIMESTAMP',

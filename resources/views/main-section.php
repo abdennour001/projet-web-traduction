@@ -6,9 +6,22 @@
             <div class="d-flex flex-row-reverse align-items-center">
                 <a href="<?php echo url('/logout')?>" class="ml-2 btn btn-secondary card-link">Déconnexion</a>
                 <a href="<?php echo url('/notifications')?>" class="btn btn-secondary ml-auto ntf-btn">
-                    <span class="ntf-container">
-                        <span class="ntf-number">3</span>
-                    </span>
+                    <?php
+
+                        $notifications = Notification::where([
+                            "id_user" => Auth::id(),
+                            "AND",
+                            "vu" => "0"
+                        ]);
+
+                        $notifications_count = count($notifications);
+
+                    ?>
+                    <?php if($notifications_count > 0) : ?>
+                        <span class="ntf-container">
+                            <span class="ntf-number"><?php echo $notifications_count ?></span>
+                        </span>
+                    <?php endif;?>
                     <i class="fas fa-bell"></i>
                 </a>
                 <div class="ml-3 d-flex flex-column">
@@ -29,14 +42,14 @@
                     <h6><?php echo Auth::user()->email ?></h6>
                 </div>
                 <a href="" style="text-decoration: none">
-                    <div class="image">
+                    <div class="image-profile">
                         <h4><?php echo Auth::user()->nom[0]?><?php echo Auth::user()->prenom[0] ?></h4>
                     </div>
                 </a>
             </div>
         </div>
         <style>
-            .image {
+            .image-profile {
                 width: 3rem;
                 height: 3rem;
                 display: flex;

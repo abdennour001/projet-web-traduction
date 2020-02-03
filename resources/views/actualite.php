@@ -3,7 +3,7 @@
 </div>
 <div class="container text-left">
     <div class="card" data-toggle="modal" data-target=".bd-example-modal-xl">
-        <img src="https://www.migaltranslations.com/sites/default/files/translation.jpg" alt="Image cap"
+        <img src="https://www.cire.be/wp-content/uploads/2011/08/personnage-cours-fle.gif" alt="Image cap"
              class="card-img-top">
         <div class="card-body">
             <h5 class="card-title">Histoire de traduction</h5>
@@ -22,7 +22,7 @@ Au 15e siècle, de nombreux manuscrits grecs anciens appartenant à des Eglises 
 </div>
 <div class="container mt-3 text-left">
     <div class="card" data-toggle="modal" data-target=".bd-example-modal-xl">
-        <img src="https://www.migaltranslations.com/sites/default/files/translation.jpg" alt="Image cap"
+        <img src="https://mooc.afpa.fr/asset-v1:afpa+MOOC_FLE_AFPA+FLE+type@asset+block@asset-v1-afpa_MOOC_FLE_AFPA_FLE_type_asset_block_AFPA_-_01.png" alt="Image cap"
              class="card-img-top">
         <div class="card-body">
             <h5 class="card-title">Les traductions modernes</h5>

@@ -3,6 +3,7 @@
         <form id="sendDevisForm" method="post" action="<?php echo url('/devis/send')?>" enctype="multipart/form-data">
             <div class="text-black-50 mb-5 text-center">
                 <h1>Demande de devis</h1>
+                <h3>Etape #1</h3>
             </div>
 
 
@@ -11,6 +12,15 @@
                     <?php
                     echo Session::get('error-send-devis');
                     Session::forget('error-send-devis');
+                    ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (Session::has('devis-sent')) : ?>
+                <div class="alert alert-success border-success">
+                    <?php
+                    echo Session::get('devis-sent');
+                    Session::forget('devis-sent');
                     ?>
                 </div>
             <?php endif; ?>
@@ -63,8 +73,9 @@
                 <input class="form-control d-none" data-recaptcha="true" required data-error="Please complete the Captcha">
                 <div class="help-block with-errors"></div>
             </div>
-
-            <button type="submit" class="btn btn-primary mt-3">Envoyer</button>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary mt-3 text-center">Envoyer</button>
+            </div>
         </form>
 
     </div>

@@ -38,32 +38,46 @@ class View {
             throw new Exception("Template " . $this->_file . " doesn't exist.");
         }
 
-        //extract($this->_data);
+        if (strpos($this->_file, 'admin') !== false) { // render admin page
+            ob_start();
+            include_once ($this->_file);
+            $main_content_admin = ob_get_contents();
+            ob_end_clean();
 
-        ob_start();
-        include_once ($this->_file);
-        $main_section = ob_get_contents();
-        ob_end_clean();
+            $this->set('main-content-admin', $main_content_admin);
 
-        $this->set('main-content', $main_section);
+            ob_start();
+            include_once env('ROOT_PATH') . 'resources/views/layouts/admin.php';
+            $output = ob_get_contents();
+            ob_end_clean();
+            echo $output;
 
-        ob_start();
-        include_once view("main-section.php");
-        $main_section_content = ob_get_contents();
-        ob_end_clean();
+        } else { //render simple user page
+            ob_start();
+            include_once ($this->_file);
+            $main_section = ob_get_contents();
+            ob_end_clean();
 
-        ob_start();
-        include_once view('actualite.php');
-        $actualite_content = ob_get_contents();
-        ob_end_clean();
+            $this->set('main-content', $main_section);
 
-        $this->set('actualite-content', $actualite_content);
-        $this->set('main-section-content', $main_section_content);
+            ob_start();
+            include_once view("main-section.php");
+            $main_section_content = ob_get_contents();
+            ob_end_clean();
 
-        ob_start();
-        include_once env('ROOT_PATH') . 'resources/views/layouts/app.php';
-        $output = ob_get_contents();
-        ob_end_clean();
-        echo $output;
+            ob_start();
+            include_once view('actualite.php');
+            $actualite_content = ob_get_contents();
+            ob_end_clean();
+
+            $this->set('actualite-content', $actualite_content);
+            $this->set('main-section-content', $main_section_content);
+
+            ob_start();
+            include_once env('ROOT_PATH') . 'resources/views/layouts/app.php';
+            $output = ob_get_contents();
+            ob_end_clean();
+            echo $output;
+        }
     }
 }
